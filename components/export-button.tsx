@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Download } from "lucide-react"
-import type { FinancialDataRow } from "@/lib/financial-utils"
+import { type FinancialDataRow, formatNumber } from "@/lib/financial-utils"
 import * as XLSX from "xlsx"
 
 type ReportType = "balance" | "income" | "cashflow"
@@ -48,7 +48,7 @@ export function ExportButton({ data, stockCode }: ExportButtonProps) {
       }
 
       // Build sheet data
-      const sheetData: (string | number | null)[][] = []
+      const sheetData: string[][] = []
 
       // Header row
       sheetData.push(["项目", ...dates.map(formatDateHeader)])
@@ -56,10 +56,10 @@ export function ExportButton({ data, stockCode }: ExportButtonProps) {
       // Data rows
       for (const row of rows) {
         const indent = "  ".repeat(row.level)
-        const rowData: (string | number | null)[] = [indent + row.name]
+        const rowData: string[] = [indent + row.name]
 
         for (const date of dates) {
-          rowData.push(row.values[date])
+          rowData.push(formatNumber(row.values[date]))
         }
 
         sheetData.push(rowData)
