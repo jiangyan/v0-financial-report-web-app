@@ -1,3 +1,7 @@
+# prompt for v0.app
+background: main.py is a python script to extract financial data of 3 years (year here can be specified though) from public stock web site as you can seelet's convert this python to a web application:1. a modern professional UI2. a input box where the user can input stock code to extract data3. analyze python script, make our API calls showing user friendly progress when extracting4. read the python script, display extracted data into 3 tabs of table as "资产负债表", "利润表" and "现金流量表"5. can be exported to excel book with corresponding 3 sheets
+
+
 # Financial report web app
 
 *Automatically synced with your [v0.app](https://v0.app) deployments*
