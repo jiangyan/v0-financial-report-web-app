@@ -4,9 +4,9 @@ import type React from "react"
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { StockAutocomplete } from "@/components/stock-autocomplete"
 import { validateStockCode } from "@/lib/financial-utils"
 import { Search, Loader2 } from "lucide-react"
 
@@ -38,15 +38,13 @@ export function StockForm({ onSubmit, isLoading }: StockFormProps) {
       <div className="flex flex-col sm:flex-row gap-4">
         <div className="flex-1 space-y-2">
           <Label htmlFor="stock-code">股票代码</Label>
-          <Input
-            id="stock-code"
-            placeholder="输入股票代码，如：000063 或 SZ000063"
+          <StockAutocomplete
             value={stockCode}
-            onChange={(e) => {
-              setStockCode(e.target.value)
+            onChange={(value) => {
+              setStockCode(value)
               setError("")
             }}
-            className="h-12 text-base"
+            placeholder="输入代码、名称或拼音，如：600000、浦发银行、pfyx"
             disabled={isLoading}
           />
           {error && <p className="text-sm text-destructive">{error}</p>}
